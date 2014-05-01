@@ -27,5 +27,6 @@ class Reader
             $event = new MessageEvent($message);
             $this->dispatcher->dispatch('message.received', $event);
         }
+        return $this;
     }
 }
