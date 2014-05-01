@@ -38,8 +38,3 @@ class Client
         return $this;
     }
 }
-
-
-$socket = Socket::create(Client::DEFAULT_HOST, Client::DEFAULT_PORT);
-$socket->connect();
-$client = new Client();
