@@ -1,6 +1,7 @@
 {
     "name": "carlescliment/php-mud-client",
     "description": "Mud client written in PHP",
+    "version": "0.0.1",
     "require": {
         "symfony/event-dispatcher"   : "2.4.*",
         "symfony/console"            : "2.4.*"
