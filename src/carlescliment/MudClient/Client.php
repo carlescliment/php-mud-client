@@ -23,15 +23,6 @@ class Client
     }
 
 
-    public function listen()
-    {
-        while ($out = $this->socket->read()) {
-            echo $out;
-        }
-        return $this;
-    }
-
-
     public function close()
     {
         $this->socket->close();
