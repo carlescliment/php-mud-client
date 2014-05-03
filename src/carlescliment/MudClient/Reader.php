@@ -3,28 +3,29 @@
 namespace carlescliment\MudClient;
 
 use carlescliment\MudClient\Event\EventDispatcherInterface,
+    carlescliment\MudClient\Event\EventBuilderInterface,
     carlescliment\MudClient\Event\MessageEvent;
 
 
 class Reader
 {
 
-    private $socket;
     private $dispatcher;
+    private $builder;
 
 
-    public function __construct(Socket $socket, EventDispatcherInterface $dispatcher)
+    public function __construct(EventDispatcherInterface $dispatcher, EventBuilderInterface $builder)
     {
-        $this->socket = $socket;
         $this->dispatcher = $dispatcher;
+        $this->builder = $builder;
     }
 
 
-    public function listen()
+    public function listen(Socket $socket)
     {
-        while ($message = $this->socket->read())
+        while ($message = $socket->read())
         {
-            $event = new MessageEvent($message);
+            $event = $this->builder->buildFor($message);
             $this->dispatcher->dispatch('message.received', $event);
         }
         return $this;

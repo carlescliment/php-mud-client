@@ -8,20 +8,23 @@ use Prophecy\Argument;
 class ReaderSpec extends ObjectBehavior
 {
 
-    public function let($socket, $dispatcher)
+    public function let($dispatcher, $event_builder)
     {
-        $socket->beADoubleOf('carlescliment\MudClient\Socket');
         $dispatcher->beADoubleOf('carlescliment\MudClient\Event\EventDispatcherInterface');
-        $this->beConstructedWith($socket, $dispatcher);
+        $event_builder->beADoubleOf('carlescliment\MudClient\Event\EventBuilderInterface');
+        $this->beConstructedWith($dispatcher, $event_builder);
     }
 
 
-    function it_dispatches_an_event_when_receiving_a_message($socket, $dispatcher)
+    function it_dispatches_an_event_when_receiving_a_message($socket, $dispatcher, $event_builder, $event)
     {
+        $socket->beADoubleOf('carlescliment\MudClient\Socket');
         $socket->read()->willReturn('some message', false);
+        $event->beADoubleOf('carlescliment\MudClient\Event\EventInterface');
 
-        $dispatcher->dispatch('message.received', Argument::type('carlescliment\MudClient\Event\EventInterface'))->shouldBeCalled();
+        $event_builder->buildFor('some message')->shouldBeCalled()->willReturn($event);
+        $dispatcher->dispatch('message.received', $event)->shouldBeCalled();
 
-        $this->listen();
+        $this->listen($socket);
     }
 }
