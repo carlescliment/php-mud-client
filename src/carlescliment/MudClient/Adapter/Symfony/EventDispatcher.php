@@ -1,13 +1,13 @@
 <?php
 
-namespace carlescliment\MudClient;
+namespace carlescliment\MudClient\Adapter\Symfony;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as SfEventDispatcher;
 
 use carlescliment\MudClient\Event\EventDispatcherInterface,
     carlescliment\MudClient\Event\EventInterface;
 
-class SfEventDispatcherAdapter implements EventDispatcherInterface
+class EventDispatcher implements EventDispatcherInterface
 {
 
     private $dispatcher;

@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\carlescliment\MudClient\Adapter;
+namespace spec\carlescliment\MudClient\Adapter\Symfony;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class SfEventBuilderSpec extends ObjectBehavior
+class EventBuilderSpec extends ObjectBehavior
 {
     function it_builds_instances_of_symfony_event()
     {

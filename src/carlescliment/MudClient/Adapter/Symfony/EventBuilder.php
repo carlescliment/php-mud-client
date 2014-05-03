@@ -1,12 +1,12 @@
 <?php
 
-namespace carlescliment\MudClient\Adapter;
+namespace carlescliment\MudClient\Adapter\Symfony;
 
-class SfEventBuilder
+class EventBuilder
 {
 
     public function buildFor($message)
     {
-        return new SfEvent($message);
+        return new Event($message);
     }
 }
