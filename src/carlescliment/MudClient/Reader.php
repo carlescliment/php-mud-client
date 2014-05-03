@@ -21,7 +21,7 @@ class Reader
     }
 
 
-    public function listen(Socket $socket)
+    public function read(Socket $socket)
     {
         while ($message = $socket->read())
         {

@@ -25,6 +25,6 @@ class ReaderSpec extends ObjectBehavior
         $event_builder->buildFor('some message')->shouldBeCalled()->willReturn($event);
         $dispatcher->dispatch('message.received', $event)->shouldBeCalled();
 
-        $this->listen($socket);
+        $this->read($socket);
     }
 }
